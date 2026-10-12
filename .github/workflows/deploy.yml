@@ -24,6 +24,10 @@ jobs:
 
       - name: Build static site
         run: npm run build
+        env:
+          # Sans cette variable, le build publie un site muet : ni balise GA4, ni bandeau
+          # de consentement (le layout conditionne tout le bloc à PUBLIC_GA4_ID).
+          PUBLIC_GA4_ID: ${{ secrets.GA4_ID }}
 
       - name: SEO contract (bloquant)
         run: |
